@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="de" http-equiv="Content-Language" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>PartyTuber</title>
+<style type="text/css">
+.ms-grid4-1011-main {
+	border-left: .75pt solid black;
+	border-right: .75pt solid black;
+	border-top-style: none;
+	border-bottom-style: none;
+	background-color: white;
+}
+.ms-grid4-1011-tl {
+	font-weight: normal;
+	color: black;
+	border-left: .75pt solid black;
+	border-right: .75pt solid black;
+	border-top-style: none;
+	border-bottom-style: none;
+	background-color: #E9E9E9;
+}
+.ms-grid4-1011-left {
+	font-weight: normal;
+	color: black;
+	border-left: .75pt solid black;
+	border-right: .75pt solid black;
+	border-top: .75pt solid black;
+	border-bottom-style: none;
+	background-color: white;
+}
+.ms-grid4-1011-top {
+	font-weight: normal;
+	color: black;
+	border-left-style: none;
+	border-right: .75pt solid black;
+	border-top-style: none;
+	border-bottom-style: none;
+	background-color: #E9E9E9;
+}
+.ms-grid4-1011-even {
+	color: black;
+	border-left-style: none;
+	border-right: .75pt solid black;
+	border-top: .75pt solid black;
+	border-bottom-style: none;
+}
+
+.butt{
+		width: 5em;
+		}
+</style>
+</head>
+
+<body>
+
+    <div id="player"></div>
+
+    <script src="http://www.youtube.com/player_api"></script>
+
+    <script>
+
+        // create youtube player
+        var player, videocode='nu0R96OZy6w', maxuser=3, user=0,num=0;
+		
+        function onYouTubePlayerAPIReady() {
+            player = new YT.Player('player', {
+              height: '390',
+              width: '640',
+              videoId: videocode,
+              events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+              }
+            });
+        }
+
+        // autoplay video
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+
+        // when video ends start next one
+        function onPlayerStateChange(event) {        
+            if(event.data === 0) {          
+				user=(user)%3+1;
+                videocode=document.getElementById("tf"+user).value;
+
+				player.loadVideoById(videocode);
+            }
+        }
+		function myToggle(btn_id) {
+			num=btn_id.charAt(3);
+			if(document.getElementById("tf"+num).disabled===true)
+			{
+			document.getElementById("tf"+num).disabled = false;
+			document.getElementById("btn"+num).value="confirm";
+			}
+			else
+			{
+			document.getElementById("tf"+num).disabled = true;
+			document.getElementById("btn"+num).value="edit";
+			}
+	
+	
+}
+    </script>
+<table class="ms-grid4-1011-main" style="width: 100%">
+	<!-- fpstyle: 19,010111100 -->
+	<tr>
+		<td class="ms-grid4-1011-tl">User1</td>
+		<td class="ms-grid4-1011-top">User2</td>
+		<td class="ms-grid4-1011-top">User3</td>
+	</tr>
+	<tr>
+		<td class="ms-grid4-1011-left"><input type="text" id="tf1" value=""> <input type="button" class="butt" id="btn1" value="confirm" onclick="myToggle(this.id)"></td>
+		<td class="ms-grid4-1011-even"><input type="text" id="tf2" value=""> <input type="button" class="butt" id="btn2" value="confirm" onclick="myToggle(this.id)"></td>
+		<td class="ms-grid4-1011-even"><input type="text" id="tf3" value=""> <input type="button" class="butt" id="btn3" value="confirm" onclick="myToggle(this.id)"></td>
+
+	</tr>
+	<tr>
+		<td class="ms-grid4-1011-left"><input type="text" id="tf4" value=""> <input type="button" class="butt" id="btn4" value="confirm" onclick="myToggle(this.id)"></td>
+		<td class="ms-grid4-1011-even"><input type="text" id="tf5" value=""> <input type="button" class="butt" id="btn5" value="confirm" onclick="myToggle(this.id)"></td>
+		<td class="ms-grid4-1011-even"><input type="text" id="tf6" value=""> <input type="button" class="butt" id="btn6" value="confirm" onclick="myToggle(this.id)"></td>
+
+	</tr>
+	<tr>
+		<td class="ms-grid4-1011-left"><input type="text" id="tf7" value=""> <input type="button" class="butt" id="btn7" value="confirm" onclick="myToggle(this.id)"></td>
+		<td class="ms-grid4-1011-even"><input type="text" id="tf8" value=""> <input type="button" class="butt" id="btn8" value="confirm" onclick="myToggle(this.id)"></td>
+		<td class="ms-grid4-1011-even"><input type="text" id="tf9" value=""> <input type="button" class="butt" id="btn9" value="confirm" onclick="myToggle(this.id)"></td>
+
+	</tr>
+</table>
+
+</body>
+
+</html>
